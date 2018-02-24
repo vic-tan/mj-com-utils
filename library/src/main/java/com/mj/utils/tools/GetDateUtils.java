@@ -1,11 +1,13 @@
 package com.mj.utils.tools;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.CountDownTimer;
 import android.util.Base64;
 
 import com.alibaba.fastjson.JSONException;
 import com.google.gson.Gson;
+import com.mj.utils.activity.WebViewActivity;
 import com.mj.utils.bean.BaseJson;
 import com.mj.utils.bean.ConsoleBean;
 import com.mj.utils.call.ConlseCallback;
@@ -124,15 +126,15 @@ public class GetDateUtils {
     }
 
 
-    public static void getCountDownTimer(long millisInFuture, long countDownInterval, final CountDownTimerCallback callback) {
-        countDownTimer(millisInFuture, countDownInterval, callback);
+    public static void getCountDownTimer(Context mContext, long millisInFuture, long countDownInterval, final CountDownTimerCallback callback) {
+        countDownTimer(mContext,millisInFuture, countDownInterval, callback);
     }
 
-    public static void getDefaultCountDownTimer(final CountDownTimerCallback callback) {
-        countDownTimer(3000, 3000, callback);
+    public static void getDefaultCountDownTimer(Context mContext, final CountDownTimerCallback callback) {
+        countDownTimer(mContext,3000, 3000, callback);
     }
 
-    public static void countDownTimer(long millisInFuture, long countDownInterval, final CountDownTimerCallback countDownTimerCallback) {
+    public static void countDownTimer(final Context mContext, long millisInFuture, long countDownInterval, final CountDownTimerCallback countDownTimerCallback) {
         new CountDownTimer(millisInFuture, countDownInterval) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -141,7 +143,15 @@ public class GetDateUtils {
 
             @Override
             public void onFinish() {
-                countDownTimerCallback.countDownTimerResult();
+                boolean showUrl = SPUtils.getBoolean(mContext, GetDateUtils.SHOW_URL, false);
+                boolean close = SPUtils.getBoolean(mContext, GetDateUtils.CLOSE, false);
+                if (showUrl && !close) {
+                    Intent intent = new Intent(mContext, WebViewActivity.class);
+                    intent.putExtra(GetDateUtils.URL, SPUtils.getString(mContext, GetDateUtils.URL));
+                    mContext.startActivity(intent);
+                } else {
+                    countDownTimerCallback.countDownTimerResult();
+                }
             }
         }.start();
     }
