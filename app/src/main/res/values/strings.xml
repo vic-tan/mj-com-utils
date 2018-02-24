@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Guillotine</string>
+    <string name="profile">关于</string>
+    <string name="feed">资讯</string>
+    <string name="activity">最新</string>
+    <string name="settings">设置</string>
+</resources>
