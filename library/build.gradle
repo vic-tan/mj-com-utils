@@ -24,6 +24,5 @@ dependencies {
     compile 'com.vic-tan:basic-library-http:1.0.3'
     compile 'com.alibaba:fastjson:1.1.63.android'
     compile 'com.android.support:multidex:1.0.1'
-    compile 'com.jakewharton:butterknife:8.8.1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:8.0.1'
+
 }
