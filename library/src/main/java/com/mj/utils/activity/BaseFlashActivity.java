@@ -16,7 +16,7 @@ import com.mj.utils.tools.GetDateUtils;
  */
 public abstract class BaseFlashActivity extends AppCompatActivity implements CountDownTimerCallback{
 
-    private Context mContext;
+    protected Context mContext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

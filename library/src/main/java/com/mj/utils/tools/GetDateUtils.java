@@ -1,5 +1,6 @@
 package com.mj.utils.tools;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
@@ -152,6 +153,7 @@ public class GetDateUtils {
                 } else {
                     countDownTimerCallback.countDownTimerResult();
                 }
+                ((Activity)mContext).finish();
             }
         }.start();
     }
