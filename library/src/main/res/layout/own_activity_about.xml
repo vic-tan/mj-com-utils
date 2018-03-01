@@ -15,7 +15,7 @@
             style="@style/ImageView.Hamburger"
             android:src="@drawable/actionbar_icon_back_two"/>
 
-        <cTextView
+        <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
