@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Guillotine</string>
+    <string name="common_dialog_loading">&#160;&#160;加载中...&#160;&#160;</string>
 </resources>

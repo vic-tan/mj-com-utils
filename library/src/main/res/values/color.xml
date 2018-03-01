@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="white">@android:color/white</color>
+    <color name="text">#303030</color>
+    <color name="theme_line_list_color">#cdced3</color><!--  列表、底部标签栏线 -->
+    <color name="guillotine_background">#444153</color>
+    <color name="guillotine_background_dark">#383547</color>
+    <color name="selected_item_color">#30d1d5</color>
+    <color name="red">@android:color/holo_red_dark</color>
+    <color name="blue">@android:color/holo_blue_light</color>
+
+    <!--  列表 -->
+    <color name="theme_list_normal_color">#ffffff</color><!--  列表平常-->
+    <color name="theme_list_pressed_color">#e7e7e8</color><!--  列表点击色-->
+    <color name="theme_font_d_color">#a6a6ab</color>
+</resources>

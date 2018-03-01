@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- <ImageView
+         style="@style/ImageView.ContentItem"
+         android:layout_marginTop="@dimen/guillotine_medium_margin"
+         android:src="@drawable/content_1" />
+
+     <ImageView
+         style="@style/ImageView.ContentItem"
+         android:src="@drawable/content_2" />
+
+ -->
+</LinearLayout>

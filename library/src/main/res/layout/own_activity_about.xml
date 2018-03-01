@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tlf.basic.base.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"
+        app:contentInsetStart="0dp">
+
+        <ImageView
+            android:id="@+id/content_hamburger"
+            style="@style/ImageView.Hamburger"
+            android:src="@drawable/actionbar_icon_back_two"/>
+
+        <cTextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="关于我们"
+            android:textSize="@dimen/guillotine_item_text_size"/>
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1F1F1"
+        android:orientation="vertical">
+
+
+        <ImageView
+            android:id="@+id/logo"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="73px"
+            android:background="@drawable/app_about_logo"
+            />
+
+        <TextView
+            android:id="@+id/version_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="51px"
+            android:layout_marginTop="44px"
+            android:text="V1.0.0"
+            android:textColor="@color/theme_font_d_color"
+            android:textSize="42px"/>
+
+
+        <TextView
+            android:id="@+id/desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="30dp"
+            android:layout_marginRight="30dp"
+            android:layout_marginTop="44px"
+            android:text="提供全国各种彩种的走势图分析，开奖及时，数据稳定，中奖无需等待。是彩民用户们得力的APP助手，本软件功能强大，安全绿色、界面美观、更省流量,让您随时随地享玩就玩。"
+            android:textColor="@color/theme_font_d_color"
+            android:textSize="48px"/>
+
+    </LinearLayout>
+
+</com.tlf.basic.base.autolayout.AutoLinearLayout>

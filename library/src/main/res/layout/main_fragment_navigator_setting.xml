@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tlf.basic.base.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#F1F1F1"
+        android:orientation="vertical">
+
+
+        <com.tlf.basic.uikit.roundview.RoundRelativeLayout
+            android:id="@+id/rl_account_safe"
+            android:layout_marginTop="44px"
+            android:layout_width="match_parent"
+            android:layout_height="143px"
+            android:visibility="gone"
+            app:rv_backgroundColor="@color/theme_list_normal_color"
+            app:rv_backgroundPressColor="@color/theme_list_pressed_color">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="53px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="账号与安全"
+                android:textColor="#303030"
+                android:textSize="46px" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="78px"
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:src="@drawable/right_enter" />
+        </com.tlf.basic.uikit.roundview.RoundRelativeLayout>
+
+        <com.tlf.basic.uikit.roundview.RoundRelativeLayout
+            android:id="@+id/rl_help_book"
+            android:layout_marginTop="51px"
+            android:layout_width="match_parent"
+            android:layout_height="143px"
+            app:rv_backgroundColor="@color/theme_list_normal_color"
+            app:rv_backgroundPressColor="@color/theme_list_pressed_color">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="53px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="帮助手册"
+                android:textColor="#303030"
+                android:textSize="46px" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="78px"
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:src="@drawable/right_enter" />
+        </com.tlf.basic.uikit.roundview.RoundRelativeLayout>
+
+        <View
+            android:layout_marginLeft="30px"
+            android:background="@color/theme_line_list_color"
+            android:layout_width="match_parent"
+            android:layout_height="1.5px"/>
+
+        <com.tlf.basic.uikit.roundview.RoundRelativeLayout
+            android:id="@+id/rl_advice_rep"
+            android:layout_width="match_parent"
+            android:layout_height="143px"
+            app:rv_backgroundColor="@color/theme_list_normal_color"
+            app:rv_backgroundPressColor="@color/theme_list_pressed_color">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="53px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="意见反馈"
+                android:textColor="#303030"
+                android:textSize="46px" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="78px"
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:src="@drawable/right_enter" />
+        </com.tlf.basic.uikit.roundview.RoundRelativeLayout>
+
+        <View
+            android:layout_marginLeft="30px"
+            android:background="@color/theme_line_list_color"
+            android:layout_width="match_parent"
+            android:layout_height="1.5px"/>
+
+        <com.tlf.basic.uikit.roundview.RoundRelativeLayout
+            android:id="@+id/rl_about_us"
+            android:layout_width="match_parent"
+            android:layout_height="143px"
+            app:rv_backgroundColor="@color/theme_list_normal_color"
+            app:rv_backgroundPressColor="@color/theme_list_pressed_color">
+
+            <TextView
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="53px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="关于我们"
+                android:textColor="#303030"
+                android:textSize="46px" />
+
+            <ImageView
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="78px"
+                android:layout_width="45px"
+                android:layout_height="45px"
+                android:src="@drawable/right_enter" />
+        </com.tlf.basic.uikit.roundview.RoundRelativeLayout>
+
+        <com.tlf.basic.uikit.roundview.RoundRelativeLayout
+            android:id="@+id/rl_exit"
+            android:layout_marginTop="54px"
+            android:layout_width="match_parent"
+            android:layout_height="143px"
+            app:rv_backgroundColor="@color/theme_list_normal_color"
+            app:rv_backgroundPressColor="@color/theme_list_pressed_color">
+
+            <TextView
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="53px"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="退出应用"
+                android:textColor="#303030"
+                android:textSize="46px" />
+        </com.tlf.basic.uikit.roundview.RoundRelativeLayout>
+
+    </LinearLayout>
+
+</com.tlf.basic.base.autolayout.AutoLinearLayout>

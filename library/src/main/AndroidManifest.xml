@@ -4,6 +4,11 @@
     <application >
 
         <activity android:name=".activity.WebViewActivity"/>
+        <activity android:name=".activity.FeedbackActivity"/>
+        <activity android:name=".activity.LocalWebViewActivity"/>
+        <activity android:name=".activity.AboutActivity"/>
+        <activity android:name=".activity.cp.HistoryActivity"/>
+        <activity android:name=".activity.cp.HistoryDetailActivity"/>
 
         <activity
             android:name=".activity.PromptActivity"
