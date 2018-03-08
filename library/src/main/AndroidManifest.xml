@@ -36,6 +36,7 @@
         <activity android:name=".activity.AboutActivity"/>
         <activity android:name=".activity.cp.HistoryActivity"/>
         <activity android:name=".activity.cp.HistoryDetailActivity"/>
+        <activity android:name=".activity.AgentWebActivity"/>
 
         <activity
             android:name=".activity.PromptActivity"
