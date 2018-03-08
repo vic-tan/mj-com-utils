@@ -4,21 +4,29 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
+import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Log;
 
 import com.alibaba.fastjson.JSONException;
 import com.google.gson.Gson;
+import com.mj.utils.activity.AgentWebActivity;
 import com.mj.utils.activity.WebViewActivity;
 import com.mj.utils.bean.BaseJson;
+import com.mj.utils.bean.Config;
 import com.mj.utils.bean.ConsoleBean;
 import com.mj.utils.call.ConlseCallback;
 import com.mj.utils.call.CountDownTimerCallback;
+import com.mj.utils.call.JWConlseCallback;
 import com.mj.utils.call.ResultCallback;
 import com.tlf.basic.http.okhttp.OkHttpUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import cn.bmob.v3.BmobQuery;
+import cn.bmob.v3.listener.GetListener;
 import okhttp3.Call;
 import okhttp3.Response;
 
@@ -126,13 +134,50 @@ public class GetDateUtils {
         });
     }
 
+    //何佳为
+    public static void getMJHJWUrl(final Context mContext, String id, final JWConlseCallback callback) {
+        //查找Config表里面的数据
+        BmobQuery<Config> bmobQuery = new BmobQuery<>();
+        bmobQuery.getObject(mContext, id, new GetListener<Config>() {
+            @Override
+            public void onSuccess(Config config) {
+                Log.e("way", "查询成功 : " + config.toString());
+
+                SystemClock.sleep(2000);
+
+                boolean isShowWap = config.getShow();
+
+                if (isShowWap) {
+                    String wapUrl = config.getUrl();
+                    if (!TextUtils.isEmpty(wapUrl)) {
+                        Intent intent = new Intent(mContext, AgentWebActivity.class);
+                        intent.putExtra("url", wapUrl);
+                        mContext.startActivity(intent);
+                        ((Activity) mContext).finish();
+                    } else {
+                        callback.reload();
+                    }
+                } else {
+                    callback.home();
+                }
+            }
+
+            @Override
+            public void onFailure(int i, String s) {
+                callback.reload();
+            }
+        });
+
+
+    }
+
 
     public static void getCountDownTimer(Context mContext, long millisInFuture, long countDownInterval, final CountDownTimerCallback callback) {
-        countDownTimer(mContext,millisInFuture, countDownInterval, callback);
+        countDownTimer(mContext, millisInFuture, countDownInterval, callback);
     }
 
     public static void getDefaultCountDownTimer(Context mContext, final CountDownTimerCallback callback) {
-        countDownTimer(mContext,3000, 3000, callback);
+        countDownTimer(mContext, 3000, 3000, callback);
     }
 
     public static void countDownTimer(final Context mContext, long millisInFuture, long countDownInterval, final CountDownTimerCallback countDownTimerCallback) {
@@ -153,7 +198,7 @@ public class GetDateUtils {
                 } else {
                     countDownTimerCallback.countDownTimerResult();
                 }
-                ((Activity)mContext).finish();
+                ((Activity) mContext).finish();
             }
         }.start();
     }
@@ -162,5 +207,6 @@ public class GetDateUtils {
         return !(value != null && !"".equalsIgnoreCase(value.trim())
                 && !"null".equalsIgnoreCase(value.trim()));
     }
+
 
 }
