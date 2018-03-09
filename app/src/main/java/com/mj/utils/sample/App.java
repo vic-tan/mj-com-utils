@@ -3,6 +3,8 @@ package com.mj.utils.sample;
 import android.app.Application;
 import android.graphics.Typeface;
 
+import cn.bmob.v3.Bmob;
+
 /**
  * Created by Dmytro Denysenko on 5/6/15.
  */
@@ -14,6 +16,7 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         initTypeface();
+        Bmob.initialize(this, "a0f4455c7a728fbd5c526722181d702e");
     }
 
     private void initTypeface() {

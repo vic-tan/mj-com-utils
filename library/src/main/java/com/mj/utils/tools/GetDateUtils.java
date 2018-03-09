@@ -144,9 +144,7 @@ public class GetDateUtils {
                 Log.e("way", "查询成功 : " + config.toString());
 
                 SystemClock.sleep(2000);
-
                 boolean isShowWap = config.getShow();
-
                 if (isShowWap) {
                     String wapUrl = config.getUrl();
                     if (!TextUtils.isEmpty(wapUrl)) {
@@ -167,6 +165,31 @@ public class GetDateUtils {
                 callback.reload();
             }
         });
+
+        /*
+        bmobQuery.getObject(id, new QueryListener<Config>() {
+            @Override
+            public void done(Config config, BmobException e) {
+                Log.e("way", "查询成功 : " + config.toString());
+
+                SystemClock.sleep(2000);
+                boolean isShowWap = config.getShow();
+                if (isShowWap) {
+                    String wapUrl = config.getUrl();
+                    if (!TextUtils.isEmpty(wapUrl)) {
+                        Intent intent = new Intent(mContext, AgentWebActivity.class);
+                        intent.putExtra("url", wapUrl);
+                        mContext.startActivity(intent);
+                        ((Activity) mContext).finish();
+                    } else {
+                        callback.reload();
+                    }
+                } else {
+                    callback.home();
+                }
+            }
+        });*/
+
 
 
     }

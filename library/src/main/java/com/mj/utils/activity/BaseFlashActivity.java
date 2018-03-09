@@ -2,7 +2,6 @@ package com.mj.utils.activity;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
@@ -44,17 +43,7 @@ public abstract class BaseFlashActivity extends AppCompatActivity implements Cou
 
 
     protected void initJW(final JWConlseCallback callback) {
-        new CountDownTimer(2000, 2000) {
-            @Override
-            public void onTick(long millisUntilFinished) {
-
-            }
-
-            @Override
-            public void onFinish() {
-                GetDateUtils.getMJHJWUrl(mContext, getURL(), callback);
-            }
-        }.start();
+        GetDateUtils.getMJHJWUrl(mContext, getURL(), callback);
     }
 
     public abstract String getURL();
