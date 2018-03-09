@@ -7,9 +7,9 @@ import com.mj.utils.bean.BaseJson;
 import com.tlf.basic.http.okhttp.callback.Callback;
 import com.tlf.basic.uikit.kprogresshud.KProgressHUD;
 
-import okhttp3.Call;
-import okhttp3.Request;
-import okhttp3.Response;
+import cn.bmob.v3.okhttp3.Call;
+import cn.bmob.v3.okhttp3.Request;
+import cn.bmob.v3.okhttp3.Response;
 
 
 /**

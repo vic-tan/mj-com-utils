@@ -26,9 +26,10 @@ import java.io.UnsupportedEncodingException;
 import java.util.List;
 
 import cn.bmob.v3.BmobQuery;
-import cn.bmob.v3.listener.GetListener;
-import okhttp3.Call;
-import okhttp3.Response;
+import cn.bmob.v3.exception.BmobException;
+import cn.bmob.v3.listener.QueryListener;
+import cn.bmob.v3.okhttp3.Call;
+import cn.bmob.v3.okhttp3.Response;
 
 /**
  * Created by tanlifei on 2018/1/11.
@@ -138,7 +139,29 @@ public class GetDateUtils {
     public static void getMJHJWUrl(final Context mContext, String id, final JWConlseCallback callback) {
         //查找Config表里面的数据
         BmobQuery<Config> bmobQuery = new BmobQuery<>();
-        bmobQuery.getObject(mContext, id, new GetListener<Config>() {
+        bmobQuery.getObject(id, new QueryListener<Config>() {
+            @Override
+            public void done(Config config, BmobException e) {
+                Log.e("way", "查询成功 : " + config.toString());
+
+                SystemClock.sleep(2000);
+                boolean isShowWap = config.getShow();
+                if (isShowWap) {
+                    String wapUrl = config.getUrl();
+                    if (!TextUtils.isEmpty(wapUrl)) {
+                        Intent intent = new Intent(mContext, AgentWebActivity.class);
+                        intent.putExtra("url", wapUrl);
+                        mContext.startActivity(intent);
+                        ((Activity) mContext).finish();
+                    } else {
+                        callback.reload();
+                    }
+                } else {
+                    callback.home();
+                }
+            }
+        });
+        /*bmobQuery.getObject(mContext, id, new GetListener<Config>() {
             @Override
             public void onSuccess(Config config) {
                 Log.e("way", "查询成功 : " + config.toString());
@@ -164,7 +187,7 @@ public class GetDateUtils {
             public void onFailure(int i, String s) {
                 callback.reload();
             }
-        });
+        });*/
 
         /*
         bmobQuery.getObject(id, new QueryListener<Config>() {

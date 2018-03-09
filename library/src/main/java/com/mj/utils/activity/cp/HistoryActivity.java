@@ -28,7 +28,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import okhttp3.Response;
+import cn.bmob.v3.okhttp3.Response;
+
 
 /**
  * Created by Dmytro Denysenko on 5/4/15.
