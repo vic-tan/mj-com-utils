@@ -22,9 +22,9 @@ import com.mj.utils.activity.LocalWebViewActivity;
 /**
  * 今天
  */
-public class SettingFragment extends Fragment {
+public class HomeFragment extends Fragment {
 
-    public static final String TAG = SettingFragment.class.getSimpleName();
+    public static final String TAG = HomeFragment.class.getSimpleName();
 
 
     @Nullable

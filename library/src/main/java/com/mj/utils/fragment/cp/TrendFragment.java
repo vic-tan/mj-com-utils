@@ -19,6 +19,7 @@ import com.mj.utils.bean.CaiPiaoBean;
 import com.mj.utils.bean.DeitalBean;
 import com.mj.utils.call.ResultCallback;
 import com.mj.utils.tools.FastjsonUtils;
+import com.mj.utils.tools.NetUtils;
 import com.mj.utils.tools.SPUtils;
 import com.tlf.basic.base.adapter.abslistview.AbsCommonAdapter;
 import com.tlf.basic.base.adapter.abslistview.AbsViewHolder;
@@ -96,7 +97,6 @@ public class TrendFragment extends Fragment {
                 });
                 initLineChart(lineChart, mPointValues);//初始化
                 LinearListView numListView = holder.getView(R.id.num_list);
-
 
 
                 AbsCommonAdapter adapter1 = new AbsCommonAdapter<String>(getActivity(), R.layout.fragment_num_list_item, numList) {
@@ -230,34 +230,49 @@ public class TrendFragment extends Fragment {
         nameList.add("166907");
         nameList.add("167607");
         nameList.add("165407");
-        OkHttpUtils.get().url(url).build().execute(new ResultCallback(getActivity()) {
-            @Override
-            public void onCusResponse(BaseJson response) {
+        String string = getDefultJson();
+        try {
+            list.clear();
+            for (String str : nameList) {
+                list.add(setCaiPiaoBean(string, str));
             }
-
-            @Override
-            public BaseJson parseNetworkResponse(Response response) throws Exception {
-                String string = response.body().string();
-                BaseJson jsonBean = new BaseJson();
-                try {
-                    list.clear();
-                    for (String str : nameList) {
-                        list.add(setCaiPiaoBean(string, str));
-                    }
-                    if (!"".equals(string)) {
-                        SPUtils.putString(getActivity(), "json", string);
-                    }
-                } catch (Exception var5) {
-                    var5.printStackTrace();
+            if (!"".equals(string)) {
+                SPUtils.putString(getActivity(), "json", string);
+            }
+        } catch (Exception var5) {
+            var5.printStackTrace();
+        }
+        adapter.notifyDataSetChanged();
+        if (NetUtils.isConnected(getActivity())) {
+            OkHttpUtils.get().url(url).build().execute(new ResultCallback(getActivity()) {
+                @Override
+                public void onCusResponse(BaseJson response) {
                 }
-                return jsonBean;
-            }
 
-            @Override
-            public void onResponse(BaseJson response) {
-                adapter.notifyDataSetChanged();
-            }
-        });
+                @Override
+                public BaseJson parseNetworkResponse(Response response) throws Exception {
+                    String string = response.body().string();
+                    BaseJson jsonBean = new BaseJson();
+                    try {
+                        list.clear();
+                        for (String str : nameList) {
+                            list.add(setCaiPiaoBean(string, str));
+                        }
+                        if (!"".equals(string)) {
+                            SPUtils.putString(getActivity(), "json", string);
+                        }
+                    } catch (Exception var5) {
+                        var5.printStackTrace();
+                    }
+                    return jsonBean;
+                }
+
+                @Override
+                public void onResponse(BaseJson response) {
+                    adapter.notifyDataSetChanged();
+                }
+            });
+        }
     }
 
     public CaiPiaoBean setCaiPiaoBean(String json, String name) {
@@ -267,5 +282,200 @@ public class TrendFragment extends Fragment {
             caiPiaoBean.setTag_id(name);
         }
         return caiPiaoBean;
+    }
+
+    public String getDefultJson() {
+        return "{\n" +
+                "\t\"220051\": {\n" +
+                "\t\t\"issue\": \"2018031\",\n" +
+                "\t\t\"lotName\": \"双色球\",\n" +
+                "\t\t\"balls\": \"02 16 18 19 27 30+14\",\n" +
+                "\t\t\"date\": \"2018-03-20\",\n" +
+                "\t\t\"index\": \"1\"\n" +
+                "\t},\n" +
+                "\t\"120029\": {\n" +
+                "\t\t\"issue\": \"2018032\",\n" +
+                "\t\t\"lotName\": \"大乐透\",\n" +
+                "\t\t\"balls\": \"07 10 17 32 35+05 12\",\n" +
+                "\t\t\"date\": \"2018-03-21\",\n" +
+                "\t\t\"index\": \"2\"\n" +
+                "\t},\n" +
+                "\t\"220028\": {\n" +
+                "\t\t\"issue\": \"2018032\",\n" +
+                "\t\t\"lotName\": \"七乐彩\",\n" +
+                "\t\t\"balls\": \"13 15 16 18 21 26 29+28\",\n" +
+                "\t\t\"date\": \"2018-03-21\",\n" +
+                "\t\t\"index\": \"20\"\n" +
+                "\t},\n" +
+                "\t\"110022\": {\n" +
+                "\t\t\"issue\": \"2018031\",\n" +
+                "\t\t\"lotName\": \"七星彩\",\n" +
+                "\t\t\"balls\": \"3708681\",\n" +
+                "\t\t\"date\": \"2018-03-20\",\n" +
+                "\t\t\"index\": \"19\"\n" +
+                "\t},\n" +
+                "\t\"210053\": {\n" +
+                "\t\t\"issue\": \"2018073\",\n" +
+                "\t\t\"lotName\": \"福彩3D\",\n" +
+                "\t\t\"balls\": \"275+676\",\n" +
+                "\t\t\"date\": \"2018-03-21\",\n" +
+                "\t\t\"index\": \"5\"\n" +
+                "\t},\n" +
+                "\t\"110033\": {\n" +
+                "\t\t\"issue\": \"2018073\",\n" +
+                "\t\t\"lotName\": \"排列三\",\n" +
+                "\t\t\"balls\": \"748\",\n" +
+                "\t\t\"date\": \"2018-03-21\",\n" +
+                "\t\t\"index\": \"6\"\n" +
+                "\t},\n" +
+                "\t\"110035\": {\n" +
+                "\t\t\"issue\": \"2018073\",\n" +
+                "\t\t\"lotName\": \"排列五\",\n" +
+                "\t\t\"balls\": \"74819\",\n" +
+                "\t\t\"date\": \"2018-03-21\",\n" +
+                "\t\t\"index\": \"7\"\n" +
+                "\t},\n" +
+                "\t\"166406\": {\n" +
+                "\t\t\"issue\": \"2018032243\",\n" +
+                "\t\t\"lotName\": \"11选5\",\n" +
+                "\t\t\"balls\": \"06 04 03 08 11\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"32\"\n" +
+                "\t},\n" +
+                "\t\"168009\": {\n" +
+                "\t\t\"issue\": \"2018032239\",\n" +
+                "\t\t\"lotName\": \"新11选5\",\n" +
+                "\t\t\"balls\": \"07 05 10 01 08\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"33\"\n" +
+                "\t},\n" +
+                "\t\"255401\": {\n" +
+                "\t\t\"issue\": \"180322057\",\n" +
+                "\t\t\"lotName\": \"老时时彩\",\n" +
+                "\t\t\"balls\": \"97929\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"21\"\n" +
+                "\t},\n" +
+                "\t\"258203\": {\n" +
+                "\t\t\"issue\": \"2018032247\",\n" +
+                "\t\t\"lotName\": \"新快3\",\n" +
+                "\t\t\"balls\": \"226\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"42\"\n" +
+                "\t},\n" +
+                "\t\"130011\": {\n" +
+                "\t\t\"issue\": \"2018039\",\n" +
+                "\t\t\"lotName\": \"胜负彩\",\n" +
+                "\t\t\"balls\": \"13303000133133\",\n" +
+                "\t\t\"date\": \"2018-03-18\",\n" +
+                "\t\t\"index\": \"15\"\n" +
+                "\t},\n" +
+                "\t\"165707\": {\n" +
+                "\t\t\"issue\": \"2018032239\",\n" +
+                "\t\t\"lotName\": \"粤11选5\",\n" +
+                "\t\t\"balls\": \"11 02 04 06 10\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"34\"\n" +
+                "\t},\n" +
+                "\t\"257503\": {\n" +
+                "\t\t\"issue\": \"2018032235\",\n" +
+                "\t\t\"lotName\": \"快3\",\n" +
+                "\t\t\"balls\": \"136\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"40\"\n" +
+                "\t},\n" +
+                "\t\"255903\": {\n" +
+                "\t\t\"issue\": \"2018032242\",\n" +
+                "\t\t\"lotName\": \"老快3\",\n" +
+                "\t\t\"balls\": \"122\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"41\"\n" +
+                "\t},\n" +
+                "\t\"255803\": {\n" +
+                "\t\t\"issue\": \"2018032225\",\n" +
+                "\t\t\"lotName\": \"好运快3\",\n" +
+                "\t\t\"balls\": \"256\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"43\"\n" +
+                "\t},\n" +
+                "\t\"257703\": {\n" +
+                "\t\t\"issue\": \"2018032239\",\n" +
+                "\t\t\"lotName\": \"湖北快3\",\n" +
+                "\t\t\"balls\": \"256\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"44\"\n" +
+                "\t},\n" +
+                "\t\"223515\": {\n" +
+                "\t\t\"issue\": \"2018073\",\n" +
+                "\t\t\"lotName\": \"15选5\",\n" +
+                "\t\t\"balls\": \"03 04 09 12 14+05 06\",\n" +
+                "\t\t\"date\": \"2018-03-21\",\n" +
+                "\t\t\"index\": \"39\"\n" +
+                "\t},\n" +
+                "\t\"166407\": {\n" +
+                "\t\t\"issue\": \"2018032243\",\n" +
+                "\t\t\"lotName\": \"快乐扑克\",\n" +
+                "\t\t\"balls\": \"27 40 3K\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"47\"\n" +
+                "\t},\n" +
+                "\t\"166507\": {\n" +
+                "\t\t\"issue\": \"2018032246\",\n" +
+                "\t\t\"lotName\": \"幸运11选5\",\n" +
+                "\t\t\"balls\": \"06 03 05 08 04\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"36\"\n" +
+                "\t},\n" +
+                "\t\"165207\": {\n" +
+                "\t\t\"issue\": \"2018032240\",\n" +
+                "\t\t\"lotName\": \"上海11选5\",\n" +
+                "\t\t\"balls\": \"04 01 05 11 03\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"38\"\n" +
+                "\t},\n" +
+                "\t\"166907\": {\n" +
+                "\t\t\"issue\": \"2018032241\",\n" +
+                "\t\t\"lotName\": \"辽宁11选5\",\n" +
+                "\t\t\"balls\": \"06 02 05 04 11\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"37\"\n" +
+                "\t},\n" +
+                "\t\"265108\": {\n" +
+                "\t\t\"issue\": \"878347\",\n" +
+                "\t\t\"lotName\": \"快乐8\",\n" +
+                "\t\t\"balls\": \"02 09 18 21 24 33 36 38 46 47 51 57 58 64 67 70 71 74 76 78+03\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"46\"\n" +
+                "\t},\n" +
+                "\t\"167607\": {\n" +
+                "\t\t\"issue\": \"2018032234\",\n" +
+                "\t\t\"lotName\": \"快乐11选5\",\n" +
+                "\t\t\"balls\": \"04 08 02 06 10\",\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"index\": \"35\"\n" +
+                "\t},\n" +
+                "\t\"165407\": {\n" +
+                "\t\t\"issue\": \"2015020558\",\n" +
+                "\t\t\"lotName\": \"重庆11选5\",\n" +
+                "\t\t\"balls\": \"05 09 06 01 02\",\n" +
+                "\t\t\"date\": \"2015-02-05\",\n" +
+                "\t\t\"index\": \"\"\n" +
+                "\t},\n" +
+                "\t\"130042\": {\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"lotName\": \"竞彩足球\",\n" +
+                "\t\t\"index\": \"3\"\n" +
+                "\t},\n" +
+                "\t\"130041\": {\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"lotName\": \"北京单场\",\n" +
+                "\t\t\"index\": \"17\"\n" +
+                "\t},\n" +
+                "\t\"130043\": {\n" +
+                "\t\t\"date\": \"2018-03-22\",\n" +
+                "\t\t\"lotName\": \"竞彩篮球\",\n" +
+                "\t\t\"index\": \"12\"\n" +
+                "\t}\n" +
+                "}";
     }
 }

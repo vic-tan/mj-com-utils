@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.tlf.basic.base.autolayout.AutoLinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                android:layout_width="match_parent"
+                                                android:layout_height="match_parent"
+                                                android:orientation="vertical">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#F1F1F1"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ad"
+                android:layout_width="match_parent"
+                android:layout_height="450px"
+                android:background="@drawable/ad"
+                android:scaleType="centerCrop"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:background="@android:color/secondary_text_dark"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+
+                <com.mj.utils.view.BulletinView
+                    android:id="@+id/bulletin_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:bulletinEnterAnim="@anim/bulletin_item_enter"
+                    app:bulletinInterval="3000"
+                    app:bulletinLeaveAnim="@anim/bulletin_item_leave"/>
+
+            </LinearLayout>
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</com.tlf.basic.base.autolayout.AutoLinearLayout>
