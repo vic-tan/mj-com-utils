@@ -5,9 +5,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.mj.utils.R;
+
 import java.util.List;
 
-import me.bakumon.library.R;
+
 
 /**
  * SimpleBulletinAdapter 简单的垂直公告栏轮播适配器
